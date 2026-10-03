@@ -7,7 +7,7 @@ export default function App(){
 
     useEffect(()=> {
         async function fetchData(){
-            const rawData = await fetch("https://rickandmortyapi.com/api/character");
+            const rawData = await fetch("https://thesimpsonsapi.com/api/episodes");
             const {results} = await rawData.json();
 
             setData(results)
@@ -24,7 +24,10 @@ export default function App(){
             {
                 data.map((char: any) =>
                     <div key = {char.id}>
-                        <img src = {char.image} alt = {char.name}/>
+                        <h2>{char.name}</h2>
+                        <h3><i>Season {char.season}, Episode {char.episode_number}</i></h3>
+                        <img src = {`https://cdn.thesimpsonsapi.com/500${char.image_path}`} alt = {char.name}/>
+                        <p>{char.synopsis}</p>
                     </div>
                 )
             }
