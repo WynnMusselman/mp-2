@@ -1,4 +1,33 @@
 import {useEffect, useState} from "react";
+import styled from "styled-components";
+
+// styling
+const Wrapper = styled.section`
+    background-color: #2f64d6;
+    text-align: center;
+`;
+
+const SiteTitle = styled.h1`
+    color: yellow;
+    font: calc(2px + 4vw) Papyrus, fantasy;
+    margin: 4%;
+`;
+
+const EpisodeName = styled.h2`
+    margin: 2%;
+    color: white;
+    font: calc(2px + 3vw) Papyrus, fantasy;
+`;
+
+const EpisodeNumber = styled.h3`
+    font: italic calc(2px + 2vw) Papyrus, fantasy;
+`
+
+const EpisodeDescription = styled.p`
+    font: calc(2px + 1.4vw) "Lucida Console", "Courier New", monospace;
+`
+
+
 
 
 export default function App(){
@@ -19,19 +48,22 @@ export default function App(){
     }, [data.length]);
 
     return (
-        <>
+        <Wrapper>
+
+            <SiteTitle>The Simpsons Episodes</SiteTitle>
             {/*switch to TS*/}
             {
                 data.map((char: any) =>
                     <div key = {char.id}>
-                        <h2>{char.name}</h2>
-                        <h3><i>Season {char.season}, Episode {char.episode_number}</i></h3>
+                        <EpisodeName>{char.name}</EpisodeName>
+                        <EpisodeNumber>Season {char.season}, Episode {char.episode_number}</EpisodeNumber>
                         <img src = {`https://cdn.thesimpsonsapi.com/500${char.image_path}`} alt = {char.name}/>
-                        <p>{char.synopsis}</p>
+                        <EpisodeDescription>{char.synopsis}</EpisodeDescription>
+
                     </div>
                 )
             }
-        </>
+        </Wrapper>
     )
 }
 
