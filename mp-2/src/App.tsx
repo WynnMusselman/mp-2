@@ -7,19 +7,28 @@ import SimpsonFont from './assets/Simpsonfont-p07r.ttf';
 
 
 // styling
-const Wrapper = styled.section`
+
+const PageWrapper = styled.section`
     background-color: #2f64d6;
     text-align: center;
+    width: 100%;
+    margin: auto;
+`;
+
+
+const EpisodeWrapper = styled.section`
+    width: 80%;
+    margin: 5% auto;
+    border-top: 4px dotted white;
+    
 `;
 
 const SiteTitle = styled.h1`
     color: yellow;
     font: calc(2px + 4vw) 'SimpsonFont', Papyrus, fantasy;
-    margin: 4%;
 `;
 
 const EpisodeName = styled.h2`
-    margin-top: 2%;
     color: white;
     font: calc(2px + 3vw) 'SimpsonFont', Papyrus, fantasy;
 `;
@@ -66,23 +75,29 @@ export default function App(){
         <>
             <Fonts />
 
-            <Wrapper>
+            <PageWrapper>
 
                 <SiteTitle>The Simpsons Episodes</SiteTitle>
                 {/*switch to TS*/}
+
+
                 {
                     data.map((char: any) =>
                         <div key = {char.id}>
-                            <EpisodeName>{char.name}</EpisodeName>
-                            <EpisodeNumber>Season {char.season}, Episode {char.episode_number}</EpisodeNumber>
-                            <img src = {`https://cdn.thesimpsonsapi.com/500${char.image_path}`} alt = {char.name}/>
-                            <EpisodeDescription>{char.synopsis}</EpisodeDescription>
-                            <EpisodeDescription>{char.airdate}</EpisodeDescription>
+                            <EpisodeWrapper>
+                                <EpisodeName>{char.name}</EpisodeName>
+                                <EpisodeNumber>Season {char.season}, Episode {char.episode_number}</EpisodeNumber>
+                                <img src = {`https://cdn.thesimpsonsapi.com/500${char.image_path}`} alt = {char.name}/>
+                                <EpisodeDescription>{char.synopsis}</EpisodeDescription>
+                                <EpisodeDescription>{char.airdate}</EpisodeDescription>
+                            </EpisodeWrapper>
 
                         </div>
                     )
                 }
-            </Wrapper>
+
+
+            </PageWrapper>
         </>
     )
 }
